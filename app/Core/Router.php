@@ -14,8 +14,26 @@ class Router
     protected function loadRoutes()
     {
         $this->routes = [
-            'GET' => [],
-            'POST' => [],
+            'GET' => [
+                'login' => [
+                    'controller' => 'AuthController',
+                    'action' => 'login'
+                ],
+                'register' => [
+                    'controller' => 'AuthController',
+                    'action' => 'register'
+                ]
+            ],
+            'POST' => [
+                'login' => [
+                    'controller' => 'AuthController',
+                    'action' => 'handleLogin'
+                ],
+                'register' => [
+                    'controller' => 'AuthController',
+                    'action' => 'handleRegister'
+                ]
+            ],
             'PUT' => [],
             'DELETE' => []
         ];
