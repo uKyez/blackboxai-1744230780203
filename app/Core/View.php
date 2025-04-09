@@ -11,11 +11,21 @@ class View
         $this->data = $data;
         extract($this->data);
         
+        $viewPath = VIEWS_PATH . $view . '.php';
+        $layoutPath = VIEWS_PATH . 'layouts/' . $this->layout . '.php';
+        
+        if (!file_exists($viewPath)) {
+            throw new \Exception("View file not found: $viewPath");
+        }
+        if (!file_exists($layoutPath)) {
+            throw new \Exception("Layout file not found: $layoutPath");
+        }
+        
         ob_start();
-        require VIEWS_PATH . $view . '.php';
+        require $viewPath;
         $content = ob_get_clean();
         
-        require VIEWS_PATH . 'layouts/' . $this->layout . '.php';
+        require $layoutPath;
     }
 
     public function setLayout($layout)
